@@ -1,7 +1,7 @@
 import AppKit
 import Combine
 
-public class Control: NSView {
+open class Control: NSView {
     public enum State {
         case
         hidden,
@@ -21,7 +21,7 @@ public class Control: NSView {
     
     public final let click = PassthroughSubject<Void, Never>()
     
-    required init?(coder: NSCoder) { nil }
+    public required init?(coder: NSCoder) { nil }
     public init(layer: Bool) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
@@ -32,17 +32,17 @@ public class Control: NSView {
         updateLayer()
     }
     
-    public override func updateLayer() {
+    open override func updateLayer() {
         isHidden = state == .hidden
         alphaValue = state == .off ? 0.25 : 1
     }
     
-    public override func mouseEntered(with: NSEvent) {
+    open override func mouseEntered(with: NSEvent) {
         guard state == .on || state == .pressed else { return }
         state = .highlighted
     }
     
-    public override func mouseExited(with: NSEvent) {
+    open override func mouseExited(with: NSEvent) {
         guard state == .highlighted || state == .pressed else { return }
         state = .on
     }
