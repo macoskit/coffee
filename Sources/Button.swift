@@ -3,8 +3,7 @@ import AppKit
 public final class Button: Control {
     public var color = NSColor.controlAccentColor {
         didSet {
-            image.symbolConfiguration = .init(pointSize: 14, weight: .regular)
-                .applying(.init(hierarchicalColor: color))
+            update()
         }
     }
     
@@ -26,6 +25,8 @@ public final class Button: Control {
         heightAnchor.constraint(equalToConstant: 26).isActive = true
         image.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         image.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
+        update()
     }
     
     public override func updateLayer() {
@@ -41,5 +42,10 @@ public final class Button: Control {
                     layer!.backgroundColor = .clear
                 }
             }
+    }
+    
+    private func update() {
+        image.symbolConfiguration = .init(pointSize: 14, weight: .regular)
+            .applying(.init(hierarchicalColor: color))
     }
 }
