@@ -83,7 +83,7 @@ open class Control: NSView {
         true
     }
     
-    open override var canBecomeKeyView: Bool {
+    public final override var canBecomeKeyView: Bool {
         true
     }
 }
