@@ -9,4 +9,8 @@ extension NSPopover {
         show(relativeTo: on.bounds, of: on, preferredEdge: edge)
         contentViewController!.view.window!.makeKey()
     }
+    
+    public class func close(content: NSView) {
+        (content.window?.value(forKey: "_popover") as? NSPopover)?.close()
+    }
 }
