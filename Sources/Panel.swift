@@ -3,7 +3,7 @@ import AppKit
 public final class Panel: NSPanel {
     private var monitor: Any?
     
-    public init(content: NSView, material: NSVisualEffectView.Material = .hudWindow, radius: CGFloat = 14) {
+    public init(content: NSView, material: NSVisualEffectView.Material = .hudWindow, radius: CGFloat = 10) {
         super.init(contentRect: content.bounds,
                    styleMask: [.borderless], backing: .buffered, defer: true)
         isMovableByWindowBackground = true
