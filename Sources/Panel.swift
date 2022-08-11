@@ -19,6 +19,8 @@ public final class Panel: NSPanel {
         contentView!.addSubview(blur)
         blur.addSubview(content)
         
+        center()
+        
         monitor = NSEvent
             .addLocalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown, .otherMouseDown]) { [weak self] event in
                 if self?.isVisible == true && event.window != self {
@@ -26,9 +28,6 @@ public final class Panel: NSPanel {
                 }
                 return event
             }
-        
-        center()
-        makeKeyAndOrderFront(nil)
     }
     
     public override func close() {
