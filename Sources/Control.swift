@@ -82,4 +82,8 @@ open class Control: NSView {
     public final override func acceptsFirstMouse(for: NSEvent?) -> Bool {
         true
     }
+    
+    open override var canBecomeKeyView: Bool {
+        true
+    }
 }
