@@ -5,13 +5,15 @@ public final class Panel: NSPanel {
     
     public init(content: NSView, material: NSVisualEffectView.Material = .hudWindow, radius: CGFloat = 10) {
         super.init(contentRect: content.bounds,
-                   styleMask: [.borderless], backing: .buffered, defer: true)
+                   styleMask: [.borderless],
+                   backing: .buffered,
+                   defer: true)
         isMovableByWindowBackground = true
         isOpaque = false
         backgroundColor = .clear
         hasShadow = true
         
-        let blur = NSVisualEffectView(frame: frame)
+        let blur = NSVisualEffectView(frame: content.bounds)
         blur.material = material
         blur.state = .active
         blur.wantsLayer = true
