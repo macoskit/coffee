@@ -42,4 +42,11 @@ public final class Panel: NSPanel {
     public override var canBecomeKey: Bool {
         true
     }
+    
+    public override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
+        if responder is NSTextContent {
+            return super.makeFirstResponder(responder)
+        }
+        return true
+    }
 }
