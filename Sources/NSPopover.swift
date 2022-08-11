@@ -11,6 +11,6 @@ extension NSPopover {
     }
     
     public class func close(content: NSView) {
-        (content.window?.value(forKey: "_popover") as? NSPopover)?.close()
+        (content.window?.value(forKey: "_popover") as? Self)?.close()
     }
 }
