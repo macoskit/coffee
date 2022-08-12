@@ -22,10 +22,8 @@ extension Control {
             layer!.cornerRadius = radius
             addSubview(text)
             
-            bottomAnchor.constraint(equalTo: text.bottomAnchor, constant: 10).isActive = true
-            
             text.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-            text.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+            text.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         }
         
         public override func updateLayer() {
