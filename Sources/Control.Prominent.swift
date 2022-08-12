@@ -11,7 +11,7 @@ extension Control {
         public private(set) weak var text: Text!
         
         required init?(coder: NSCoder) { nil }
-        public init(title: String) {
+        public init(title: String, radius: CGFloat = 8) {
             let text = Text(vibrancy: false)
             text.stringValue = title
             text.font = .systemFont(ofSize: NSFont.preferredFont(forTextStyle: .body).pointSize, weight: .medium)
@@ -19,7 +19,7 @@ extension Control {
             self.text = text
             
             super.init(layer: true)
-            layer!.cornerRadius = 8
+            layer!.cornerRadius = radius
             addSubview(text)
             
             bottomAnchor.constraint(equalTo: text.bottomAnchor, constant: 10).isActive = true
