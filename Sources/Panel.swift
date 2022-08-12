@@ -49,4 +49,8 @@ public final class Panel: NSPanel {
         }
         return true
     }
+    
+    public override func cancelOperation(_: Any?) {
+        close()
+    }
 }
