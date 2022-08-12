@@ -2,8 +2,12 @@ import AppKit
 
 public final class Panel: NSPanel {
     private var monitor: Any?
+    private let texted: Bool
     
-    public init(content: NSView, material: NSVisualEffectView.Material = .hudWindow, radius: CGFloat = 10) {
+    public init(content: NSView,
+                material: NSVisualEffectView.Material = .hudWindow,
+                radius: CGFloat = 10,
+                texted: Bool = false) {
         super.init(contentRect: content.bounds,
                    styleMask: [.borderless],
                    backing: .buffered,
@@ -44,6 +48,7 @@ public final class Panel: NSPanel {
     }
     
     public override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
+        guard texted else { return super.makeFirstResponder(responder) }
         if responder is NSTextContent {
             return super.makeFirstResponder(responder)
         }
