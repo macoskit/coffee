@@ -3,9 +3,12 @@ import AppKit
 extension Control {
     public final class Symbol: Control {
         public private(set) weak var image: NSImageView!
+        private let background: Bool
         
         required init?(coder: NSCoder) { nil }
-        public init(symbol: String, size: CGFloat, layer: Bool = true) {
+        public init(symbol: String, size: CGFloat, background: Bool = true) {
+            self.background = background
+            
             let image = NSImageView(image: .init(systemSymbolName: symbol,
                                                  accessibilityDescription: nil) ?? .init())
             image.translatesAutoresizingMaskIntoConstraints = false
@@ -13,9 +16,9 @@ extension Control {
                 .applying(.init(hierarchicalColor: .secondaryLabelColor))
             self.image = image
             
-            super.init(layer: layer)
-            self.layer?.cornerRadius = 7
-            self.layer?.cornerCurve = .continuous
+            super.init(layer: true)
+            layer!.cornerRadius = 7
+            layer!.cornerCurve = .continuous
             addSubview(image)
             
             widthAnchor.constraint(equalToConstant: 30).isActive = true
@@ -27,14 +30,16 @@ extension Control {
         public override func updateLayer() {
             super.updateLayer()
             
+            guard background else { return }
+            
             NSApp
                 .effectiveAppearance
                 .performAsCurrentDrawingAppearance {
                     switch state {
                     case .pressed, .highlighted:
-                        layer?.backgroundColor = NSColor.labelColor.withAlphaComponent(0.07).cgColor
+                        layer!.backgroundColor = NSColor.labelColor.withAlphaComponent(0.07).cgColor
                     default:
-                        layer?.backgroundColor = .clear
+                        layer!.backgroundColor = .clear
                     }
                 }
         }
