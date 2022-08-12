@@ -8,6 +8,8 @@ public final class Panel: NSPanel {
                 material: NSVisualEffectView.Material = .hudWindow,
                 radius: CGFloat = 10,
                 texted: Bool = false) {
+        self.texted = texted
+        
         super.init(contentRect: content.bounds,
                    styleMask: [.borderless],
                    backing: .buffered,
