@@ -46,8 +46,12 @@ extension Control {
         }
         
         private func update() {
-            image.symbolConfiguration = .init(pointSize: 14, weight: .regular)
-                .applying(.init(hierarchicalColor: color))
+            NSApp
+                .effectiveAppearance
+                .performAsCurrentDrawingAppearance {
+                    image.symbolConfiguration = .init(pointSize: 14, weight: .regular)
+                        .applying(.init(hierarchicalColor: color))
+                }
         }
     }
 }

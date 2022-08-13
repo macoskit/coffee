@@ -47,6 +47,8 @@ extension Control {
             image.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             image.widthAnchor.constraint(equalToConstant: content).isActive = true
             image.heightAnchor.constraint(equalToConstant: content).isActive = true
+            
+            update()
         }
         
         public override func updateLayer() {
@@ -63,6 +65,9 @@ extension Control {
                     default:
                         layer!.backgroundColor = .clear
                     }
+                    
+                    image.symbolConfiguration = .init(pointSize: size, weight: weight)
+                        .applying(.init(hierarchicalColor: .secondaryLabelColor))
                 }
         }
         
@@ -72,8 +77,13 @@ extension Control {
         
         private func update() {
             image.image = .init(systemSymbolName: symbol, accessibilityDescription: nil)
-            image.symbolConfiguration = .init(pointSize: size, weight: weight)
-                .applying(.init(hierarchicalColor: .secondaryLabelColor))
+            
+            NSApp
+                .effectiveAppearance
+                .performAsCurrentDrawingAppearance {
+                    image.symbolConfiguration = .init(pointSize: size, weight: weight)
+                        .applying(.init(hierarchicalColor: .secondaryLabelColor))
+                }
         }
     }
 }
