@@ -1,6 +1,6 @@
 import AppKit
 
-public class Notify: NSWindow {
+open class Notify: NSWindow {
     public init(size: CGSize) {
         super.init(contentRect: .init(origin: .zero, size: size),
                    styleMask: [.titled, .fullSizeContentView], backing: .buffered, defer: true)
