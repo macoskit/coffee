@@ -7,6 +7,7 @@ open class Notify: NSWindow {
         animationBehavior = .alertPanel
         isReleasedWhenClosed = false
         titlebarAppearsTransparent = true
+        isMovableByWindowBackground = true
         
         let content = NSVisualEffectView()
         content.state = .active
