@@ -18,6 +18,7 @@ extension Control {
         private let background: Bool
         private let size: CGFloat
         private let weight: NSFont.Weight
+        private let hierarchical: Bool
         
         required init?(coder: NSCoder) { nil }
         public init(symbol: String,
@@ -25,11 +26,13 @@ extension Control {
                     radius: CGFloat = 7,
                     content: CGFloat = 30,
                     weight: NSFont.Weight = .regular,
-                    background: Bool = true) {
+                    background: Bool = true,
+                    hierarchical: Bool = true) {
             self.symbol = symbol
             self.size = size
             self.weight = weight
             self.background = background
+            self.hierarchical = hierarchical
             
             let image = NSImageView()
             image.translatesAutoresizingMaskIntoConstraints = false
@@ -61,13 +64,18 @@ extension Control {
                 .performAsCurrentDrawingAppearance {
                     switch state {
                     case .pressed, .highlighted:
-                        layer!.backgroundColor = NSColor.labelColor.withAlphaComponent(0.07).cgColor
+                        layer!.backgroundColor = color.withAlphaComponent(0.07).cgColor
                     default:
                         layer!.backgroundColor = .clear
                     }
                     
-                    image.symbolConfiguration = .init(pointSize: size, weight: weight)
-                        .applying(.init(hierarchicalColor: .secondaryLabelColor))
+                    if hierarchical {
+                        image.symbolConfiguration = .init(pointSize: size, weight: weight)
+                            .applying(.init(hierarchicalColor: color))
+                    } else {
+                        image.symbolConfiguration = .init(pointSize: size, weight: weight)
+                        image.contentTintColor = color
+                    }
                 }
         }
         
@@ -81,8 +89,13 @@ extension Control {
             NSApp
                 .effectiveAppearance
                 .performAsCurrentDrawingAppearance {
-                    image.symbolConfiguration = .init(pointSize: size, weight: weight)
-                        .applying(.init(hierarchicalColor: .secondaryLabelColor))
+                    if hierarchical {
+                        image.symbolConfiguration = .init(pointSize: size, weight: weight)
+                            .applying(.init(hierarchicalColor: color))
+                    } else {
+                        image.symbolConfiguration = .init(pointSize: size, weight: weight)
+                        image.contentTintColor = color
+                    }
                 }
         }
     }
