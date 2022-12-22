@@ -7,7 +7,7 @@ extension Control {
             let text = Text(vibrancy: false)
             text.stringValue = title
             text.font = .systemFont(ofSize: NSFont.preferredFont(forTextStyle: .body).pointSize, weight: .medium)
-            text.textColor = .labelColor
+            text.textColor = .controlBackgroundColor
             
             super.init(layer: true)
             layer!.cornerRadius = radius
@@ -25,9 +25,9 @@ extension Control {
                 .performAsCurrentDrawingAppearance {
                     switch state {
                     case .highlighted, .pressed:
-                        layer!.backgroundColor = NSColor.quaternaryLabelColor.cgColor
-                    default:
                         layer!.backgroundColor = NSColor.tertiaryLabelColor.cgColor
+                    default:
+                        layer!.backgroundColor = NSColor.secondaryLabelColor.cgColor
                     }
                 }
         }
