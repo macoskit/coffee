@@ -76,7 +76,12 @@ open class Control: NSView {
     }
     
     public final override var mouseDownCanMoveWindow: Bool {
-        false
+        switch state {
+        case .off, .hidden:
+            return true
+        default:
+            return false
+        }
     }
     
     public final override func acceptsFirstMouse(for: NSEvent?) -> Bool {
