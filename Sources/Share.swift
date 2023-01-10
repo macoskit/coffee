@@ -8,7 +8,7 @@ public final class Share: NSMenuItem {
         self.url = url
         
         super.init(title: title, action: nil, keyEquivalent: "")
-        submenu = .init(title: "Share")
+        submenu = .init(title: title)
         submenu!.items = [
             .child(url.absoluteString.prefix(34) + "..."),
             .separator()]
@@ -21,7 +21,8 @@ public final class Share: NSMenuItem {
                             $0.representedObject = service
                         }
                     }
-        image = .init(systemSymbolName: "square.and.arrow.up", accessibilityDescription: nil)
+        image = .init(systemSymbolName: "square.and.arrow.up",
+                      accessibilityDescription: "Share")
     }
     
     @objc private func share(_ item: NSMenuItem) {

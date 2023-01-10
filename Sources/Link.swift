@@ -4,13 +4,13 @@ public final class Link: NSMenuItem {
     private let link: String
     
     required init(coder: NSCoder) { fatalError() }
-    public init(link: String) {
+    public init(title: String, link: String) {
         self.link = link
         
-        super.init(title: "Copy Link", action: nil, keyEquivalent: "")
+        super.init(title: title, action: nil, keyEquivalent: "")
         target = self
         action = #selector(share)
-        image = .init(systemSymbolName: "link", accessibilityDescription: nil)
+        image = .init(systemSymbolName: "link", accessibilityDescription: "URL")
     }
     
     @objc private func share() {
