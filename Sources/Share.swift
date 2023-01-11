@@ -16,18 +16,15 @@ public final class Share: NSMenuItem {
             return
         }
         
-        submenu!.items = [
-            .item(url.absoluteString.prefix(34) + "..."),
-            .separator()]
-                + NSSharingService
-                    .sharingServices(forItems: [url])
-                    .map { service in
-                        .item(service.menuItemTitle)
-                        .with(action: #selector(share))
-                        .with(target: self)
-                        .with(image: service.image)
-                        .with(object: service)
-                    }
+        submenu!.items = NSSharingService
+            .sharingServices(forItems: [url])
+            .map { service in
+                .item(service.menuItemTitle)
+                .with(action: #selector(share))
+                .with(target: self)
+                .with(image: service.image)
+                .with(object: service)
+            }
         isEnabled = true
     }
     
