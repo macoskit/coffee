@@ -11,8 +11,13 @@ extension NSMenuItem {
         NSMenuItem(title: title, action: nil, keyEquivalent: "")
     }
     
-    public func disabled() -> Self {
+    public func disabledItems() -> Self {
         submenu!.autoenablesItems = false
+        return self
+    }
+    
+    public func with(enabled: Bool) -> Self {
+        isEnabled = enabled
         return self
     }
     
