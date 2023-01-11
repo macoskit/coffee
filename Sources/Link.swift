@@ -10,9 +10,14 @@ public final class Link: NSMenuItem {
         super.init(title: title, action: nil, keyEquivalent: "")
         image = .init(systemSymbolName: "link", accessibilityDescription: "URL")
         
-        guard link != nil else { return }
+        guard link != nil else {
+            isEnabled = false
+            return
+        }
+        
         target = self
         action = #selector(share)
+        isEnabled = true
     }
     
     @objc private func share() {

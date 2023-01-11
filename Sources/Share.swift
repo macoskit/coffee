@@ -11,7 +11,10 @@ public final class Share: NSMenuItem {
         image = .init(systemSymbolName: "square.and.arrow.up", accessibilityDescription: title)
         submenu = .init(title: title)
         
-        guard let url else { return }
+        guard let url else {
+            isEnabled = false
+            return
+        }
         
         submenu!.items = [
             .item(url.absoluteString.prefix(34) + "..."),
@@ -25,6 +28,7 @@ public final class Share: NSMenuItem {
                         .with(image: service.image)
                         .with(object: service)
                     }
+        isEnabled = true
     }
     
     @objc private func share(_ item: NSMenuItem) {
