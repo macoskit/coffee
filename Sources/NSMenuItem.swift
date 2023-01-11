@@ -1,7 +1,7 @@
 import AppKit
 
 extension NSMenuItem {
-    public class func menu(title: String) -> NSMenuItem {
+    public class func menu(_ title: String) -> NSMenuItem {
         let menu = NSMenuItem(title: title, action: nil, keyEquivalent: "")
         menu.submenu = .init(title: title)
         return menu
