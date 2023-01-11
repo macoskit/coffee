@@ -8,7 +8,6 @@ public final class Link: NSMenuItem {
         self.link = link
         
         super.init(title: title, action: nil, keyEquivalent: "")
-        image = .init(systemSymbolName: "link", accessibilityDescription: "URL")
         
         guard link != nil else {
             isEnabled = false
@@ -18,6 +17,11 @@ public final class Link: NSMenuItem {
         target = self
         action = #selector(share)
         isEnabled = true
+    }
+    
+    public func withImage() -> Self {
+        image = .init(systemSymbolName: "link", accessibilityDescription: "URL")
+        return self
     }
     
     @objc private func share() {

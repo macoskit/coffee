@@ -8,7 +8,6 @@ public final class Share: NSMenuItem {
         self.url = url
         
         super.init(title: title, action: nil, keyEquivalent: "")
-        image = .init(systemSymbolName: "square.and.arrow.up", accessibilityDescription: title)
         submenu = .init(title: title)
         
         guard let url else {
@@ -26,6 +25,11 @@ public final class Share: NSMenuItem {
                 .with(object: service)
             }
         isEnabled = true
+    }
+    
+    public func withImage() -> Self {
+        image = .init(systemSymbolName: "square.and.arrow.up", accessibilityDescription: title)
+        return self
     }
     
     @objc private func share(_ item: NSMenuItem) {
