@@ -10,19 +10,18 @@ public final class Share: NSMenuItem {
         super.init(title: title, action: nil, keyEquivalent: "")
         submenu = .init(title: title)
         submenu!.items = [
-            .child(url.absoluteString.prefix(34) + "..."),
+            .item(url.absoluteString.prefix(34) + "..."),
             .separator()]
                 + NSSharingService
                     .sharingServices(forItems: [url])
                     .map { service in
-                        .child(service.menuItemTitle, #selector(share)) {
-                            $0.target = self
-                            $0.image = service.image
-                            $0.representedObject = service
-                        }
+                        .item(service.menuItemTitle)
+                        .with(action: #selector(share))
+                        .with(target: self)
+                        .with(image: service.image)
+                        .with(object: service)
                     }
-        image = .init(systemSymbolName: "square.and.arrow.up",
-                      accessibilityDescription: "Share")
+        image = .init(systemSymbolName: "square.and.arrow.up", accessibilityDescription: title)
     }
     
     @objc private func share(_ item: NSMenuItem) {
