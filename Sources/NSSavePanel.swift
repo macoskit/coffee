@@ -8,7 +8,9 @@ extension NSSavePanel {
     }
     
     public func with(types: [UTType]) -> Self {
-        allowedContentTypes = types
+        if !types.isEmpty {
+            allowedContentTypes = types
+        }
         return self
     }
     
