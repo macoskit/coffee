@@ -12,6 +12,11 @@ extension NSSavePanel {
         return self
     }
     
+    public func save(url: URL) async -> Bool {
+        guard let data = try? Data(contentsOf: url) else { return false }
+        return await save(data: data)
+    }
+    
     public func save(data: Data) async -> Bool {
         await withUnsafeContinuation { continuation in
             begin { [weak self] response in
