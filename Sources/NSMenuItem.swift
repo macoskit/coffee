@@ -36,6 +36,11 @@ extension NSMenuItem {
         return self
     }
     
+    public func with(tag: Int) -> Self {
+        self.tag = tag
+        return self
+    }
+    
     public func with(image: NSImage) -> Self {
         self.image = image
         return self
