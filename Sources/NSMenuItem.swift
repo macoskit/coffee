@@ -46,6 +46,11 @@ extension NSMenuItem {
         return self
     }
     
+    public func with(state: Bool) -> Self {
+        self.state = state ? .on : .off
+        return self
+    }
+    
     public func with(object: Any?) -> Self {
         representedObject = object
         return self
