@@ -5,11 +5,16 @@ extension Control {
         private weak var text: Text!
         
         required init?(coder: NSCoder) { nil }
-        public init(title: String) {
+        public init(title: String, font: NSFont?) {
             let text = Text(vibrancy: false)
             text.stringValue = title
-            text.font = .systemFont(ofSize: NSFont.preferredFont(forTextStyle: .body).pointSize, weight: .regular)
             self.text = text
+            
+            if let font {
+                text.font = font
+            } else {
+                text.font = .systemFont(ofSize: NSFont.preferredFont(forTextStyle: .body).pointSize, weight: .regular)
+            }
             
             super.init(layer: true)
             layer!.cornerRadius = 6
