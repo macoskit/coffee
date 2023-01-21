@@ -5,7 +5,7 @@ extension Control {
         private weak var text: Text!
         
         required init?(coder: NSCoder) { nil }
-        public init(title: String, font: NSFont?) {
+        public init(title: String, font: NSFont? = nil) {
             let text = Text(vibrancy: false)
             text.stringValue = title
             self.text = text
