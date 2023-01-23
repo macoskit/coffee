@@ -12,6 +12,7 @@ public final class Text: NSTextField {
         backgroundColor = .clear
         isBezeled = false
         isEditable = false
+        bezelStyle = .roundedBezel
         setAccessibilityRole(.staticText)
     }
     
